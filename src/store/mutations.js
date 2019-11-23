@@ -15,7 +15,9 @@ const authRequest = () => {
 }
 
 const isConnected = (state, code) => {
-    axios.get(`/backend?code=${code}`).then(() => {
+    axios.get(`/backend?code=${code}`).then((response) => {
+        state.connected = true
         state.code = code
+        state.guid = response.data.guid
     });
 }

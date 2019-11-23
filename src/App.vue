@@ -1,20 +1,29 @@
 <template>
   <div id="app">
-    <Login />
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="EasyList logo" src="./assets/logo.svg">
+
+    <Login v-if="!getConnectionStatus"/>
+    <a v-else :href=getFormatedUrl>{{getFormatedUrl}}</a>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Login from './components/Login.vue'
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
   components: {
-    Login,
-    HelloWorld
+    Login
+  },
+  computed: {
+    ...mapGetters([
+      'getConnectionStatus',
+      'getGuid'
+    ]),
+    getFormatedUrl: function () {
+      return `https://easylist.aule.net/generate?guid=${this.getGuid}`;
+    }
   },
   mounted: function() {
     if(this.$route.query.code) {
