@@ -62,7 +62,6 @@ def get_installation_token(row):
 def register_device(row):
     ip = network.get_public_ip()
     print("Registering IP " + ip)
-    print(row)
     method = "v1/device-server"
     data = {
         "description": "easylist on easylist.aule.net",
