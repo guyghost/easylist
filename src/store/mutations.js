@@ -6,6 +6,9 @@ export default {
   [types.AUTH_REQUEST] (state) {
     authRequest(state)
   },
+  [types.LOGOUT] (state) {
+    logout(state)
+  },
   [types.IS_CONNECTED] (state, { code }) {
       isConnected(state, code)
   }
@@ -27,3 +30,9 @@ const isConnected = (state, code, guid) => {
   }
   state.connected = true;
 };
+
+const logout = (state) => {
+  Vue.cookie.delete("guid")
+  state.guid = null
+  state.connected = false
+}

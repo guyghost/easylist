@@ -5,17 +5,17 @@
         <img alt="EasyList logo" src="./assets/logo.svg">
       </div>
     </div>
-    <div v-if="!getConnectionStatus" class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__inner">
       <div class="mdc-layout-grid__cell--span-12 connection">
         <Login />
       </div>
     </div>
-    <div v-else class="mdc-layout-grid__inner">
+    <div v-if="getConnectionStatus" class="mdc-layout-grid__inner">
       <div class="mdc-layout-grid__cell--span-6 connection">
-        <a :href=getCsvdUrl><img alt="Google Sheet" src="./assets/google_sheet.png"></a>
+        <a :href=getCsvdUrl>{{getCsvdUrl}}</a>
       </div>
       <div class="mdc-layout-grid__cell--span-6 connection">
-        <a :href=getJsonUrl><img alt="Json" src="./assets/json_logo.png"></a>
+        <a :href=getJsonUrl>{{getJsonUrl}}</a>
       </div>
     </div>
   </div>
