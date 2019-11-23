@@ -41,7 +41,8 @@ def process_user(row, user_id):
     return result
 
 def get_transactions(row):
-    result = ""
+    result = ("amount,currency,created,type,sub_type,description," +
+              "from,from_name,to_iban,to_name\n")
     users = bunq.get(row, 'v1/user')
     for u in users:
         for k, v in u.items():
