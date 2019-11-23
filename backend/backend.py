@@ -15,7 +15,7 @@ def application(env, start_response):
         "grant_type": "authorization_code",
         "code": code,
         "redirect_uri": "https://easylist.aule.net/",
-        "client_id": "a2f281751f2cbc38891745428c97595763a2149250b877fc85496547e0a7d88e",
+        "client_id": "88ad9f89f0081f7d17a9552a7ff8403b48882a521dcd5a7d7229aab16e721386",
         "client_secret": secret.get_client_secret()
     }).json()
     if "error" in response:
