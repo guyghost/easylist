@@ -1,9 +1,23 @@
 <template>
-  <div id="app">
-    <img alt="EasyList logo" src="./assets/logo.svg">
-
-    <Login v-if="!getConnectionStatus"/>
-    <a v-else :href=getFormatedUrl>{{getFormatedUrl}}</a>
+  <div id="app" class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell--span-12 logo">
+        <img alt="EasyList logo" src="./assets/logo.svg">
+      </div>
+    </div>
+    <div v-if="!getConnectionStatus" class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell--span-12 connection">
+        <Login />
+      </div>
+    </div>
+    <div v-else class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell--span-6 connection">
+        <a :href=getCsvdUrl><img alt="Google Sheet" src="./assets/google_sheet.png"></a>
+      </div>
+      <div class="mdc-layout-grid__cell--span-6 connection">
+        <a :href=getJsonUrl><img alt="Json" src="./assets/json_logo.png"></a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -21,25 +35,26 @@ export default {
       'getConnectionStatus',
       'getGuid'
     ]),
-    getFormatedUrl: function () {
+    getCsvdUrl: function () {
       return `https://easylist.aule.net/generate?guid=${this.getGuid}`;
+    },
+    getJsonUrl: function () {
+      return `https://easylist.aule.net/json?guid=${this.getGuid}`;
     }
   },
   mounted: function() {
-    if(this.$route.query.code) {
-      this.$store.dispatch('isConnected', {code: this.$route.query.code})
+    if(this.$route.query.code || this.$cookie.get('guid')) {
+      this.$store.dispatch('isConnected', {code: this.$route.query.code, guid:this.$cookie.get('guid')})
     }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+  @import "@material/layout-grid/mdc-layout-grid";
+  @import "@material/typography/mdc-typography";
+
+  .logo, .connection {
+    margin: 0 auto;
+  }
 </style>

@@ -1,9 +1,9 @@
 <template>
     <div>
         <div @click="connect" class="mdc-touch-target-wrapper">
-            <button class="mdc-button mdc-button--touch">
+            <button class="mdc-button mdc-button--touch mdc-button--raised">
                 <div class="mdc-button__ripple"></div>
-                <span class="mdc-button__label">Connection</span>
+                <span class="mdc-button__label">Connect Your Account</span>
                 <div class="mdc-button__touch"></div>
             </button>
         </div>
