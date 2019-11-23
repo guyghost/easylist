@@ -19,11 +19,10 @@ export default {
     methods: {
         connect: function() {
             if (this.getConnectionStatus) {
-                this.$store.dispatch('disconnection')
+                this.$store.dispatch('logout')
             } else {
                 this.$store.dispatch('authRequest')
             }
-            
         }
     },
     computed: {

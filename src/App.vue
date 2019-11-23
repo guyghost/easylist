@@ -2,7 +2,7 @@
   <div id="app" class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
       <div class="mdc-layout-grid__cell--span-12 logo">
-        <img alt="EasyList logo" src="./assets/logo.svg">
+        <img alt="EasyList logo" src="./assets/logo.svg" height="100vw">
       </div>
     </div>
     <div class="mdc-layout-grid__inner">
@@ -11,10 +11,18 @@
       </div>
     </div>
     <div v-if="getConnectionStatus" class="mdc-layout-grid__inner">
-      <div class="mdc-layout-grid__cell--span-6 connection">
+      <div class="mdc-layout-grid__cell--span-12 connection">
+        <a :href=getCsvdUrl><img src='./assets/google_sheet.png' height="100vw"></a>
+      </div>
+      <div class="mdc-layout-grid__cell--span-12 connection">
         <a :href=getCsvdUrl>{{getCsvdUrl}}</a>
       </div>
-      <div class="mdc-layout-grid__cell--span-6 connection">
+    </div>
+    <div v-if="getConnectionStatus" class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell--span-12 connection">
+        <a :href=getJsonUrl><img src='./assets/json_logo.png'  height="100vw"></a>
+      </div>
+      <div class="mdc-layout-grid__cell--span-12 connection">
         <a :href=getJsonUrl>{{getJsonUrl}}</a>
       </div>
     </div>

@@ -6,6 +6,12 @@ export const authRequest = ({
   commit(types.AUTH_REQUEST, payload)
 }
 
+export const logout = ({
+  commit
+}, payload) => {
+  commit(types.LOGOUT, payload)
+}
+
 export const isConnected = ({
     commit
 }, payload) => {
