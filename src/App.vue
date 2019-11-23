@@ -1,17 +1,25 @@
 <template>
   <div id="app">
+    <Login />
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
+import Login from './components/Login.vue'
 import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
   components: {
+    Login,
     HelloWorld
+  },
+  mounted: function() {
+    if(this.$route.query.code) {
+      this.$store.dispatch('isConnected', {code: this.$route.query.code})
+    }
   }
 }
 </script>
