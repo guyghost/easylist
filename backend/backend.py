@@ -10,6 +10,8 @@ import secret
 def application(env, start_response):
     start_response('200 OK', [('Content-Type','text/html')])
     d = parse_qs(env["QUERY_STRING"])
+    if "code" not in d:
+        return [json.dumps({"error": "Parameter code is required"}).encode()]
     code = d["code"]
     response = requests.post("https://api.oauth.bunq.com/v1/token", params={
         "grant_type": "authorization_code",
@@ -21,6 +23,9 @@ def application(env, start_response):
     if "error" in response:
         return [json.dumps(response).encode()]
     guid = str(uuid.uuid4())
+    if "access_token" not in response:
+        return [json.dumps({"error": "No access_token returned", 
+                            "raw_reply": response}).encode()]
     bearer = response["access_token"]
     db.put_row({"guid": guid, "bearer": bearer})
     return [json.dumps({"guid": guid}).encode()]
